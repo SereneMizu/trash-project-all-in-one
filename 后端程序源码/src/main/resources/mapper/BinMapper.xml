@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sipc.trash.mapper.BinMapper">
+    <!--    <select id="getClusterLid" resultType="com.sipc.trash.pojo.domain.DO.ClusterLidDo">-->
+    <!--        SELECT *-->
+    <!--        FROM (SELECT sum(lid_count) AS count, DATE(`date`) AS `date`-->
+    <!--              FROM bin-->
+    <!--                       INNER JOIN cluster-->
+    <!--                       INNER JOIN count ON bin.cluster_id = cluster.cluster_id AND bin.bin_id = count.bin_id-->
+    <!--              WHERE bin.cluster_id = #{clusterId}-->
+    <!--              GROUP BY DATE(`date`)-->
+    <!--              ORDER BY DATE(`date`) DESC-->
+    <!--              LIMIT 5) as t-->
+    <!--        ORDER BY DATE(`date`);-->
+    <!--    </select>-->
+    <select id="getClusterLid" resultType="com.sipc.trash.pojo.domain.DO.ClusterLidDo">
+        SELECT *
+        FROM (SELECT sum(residual_waste_count) + sum(recyclable_count) + sum(food_waste_count) +
+                     sum(hazardous_waste_count) AS count,
+                     DATE(`date`)               AS `date`
+              FROM bin
+                       INNER JOIN cluster
+                       INNER JOIN count ON bin.cluster_id = cluster.cluster_id AND bin.bin_id = count.bin_id
+              WHERE bin.cluster_id = #{clusterId}
+              GROUP BY DATE(`date`)
+              ORDER BY DATE(`date`) DESC
+              LIMIT 5) as t
+        ORDER BY DATE(`date`);
+    </select>
+    <select id="getClusterRubbish" resultType="com.sipc.trash.pojo.domain.DO.ClusterRubbishDo">
+        SELECT t.date,
+               SUM(t.residual_waste_count)  AS residual_waste_count,
+               SUM(t.recyclable_count)      AS recyclable_count,
+               SUM(t.food_waste_count)      AS food_waste_count,
+               SUM(t.hazardous_waste_count) AS hazardous_waste_count
+        FROM (SELECT count.residual_waste_count,
+                     count.recyclable_count,
+                     count.food_waste_count,
+                     count.hazardous_waste_count,
+                     count.date
+              FROM count
+                       LEFT JOIN bin ON count.bin_id = bin.bin_id
+              WHERE bin.cluster_id = #{clusterId}
+              ORDER BY DATE(`date`) DESC
+              LIMIT 5) AS t
+        GROUP BY t.date
+        ORDER BY DATE(`date`);
+    </select>
+    <select id="getBinMethane" resultType="com.sipc.trash.pojo.domain.DO.BinMethaneDo">
+        SELECT *
+        FROM (SELECT methane_value AS value,
+                     date          AS date
+              FROM value
+              WHERE bin_id = #{binId}
+              ORDER BY `date` DESC
+              LIMIT 5) as vd
+        ORDER BY `date`;
+    </select>
+    <select id="getBinSmog" resultType="com.sipc.trash.pojo.domain.DO.BinSmogDo">
+        SELECT *
+        FROM (SELECT smog_value AS value,
+                     date       AS date
+              FROM value
+              WHERE bin_id = #{binId}
+              ORDER BY `date` DESC
+              LIMIT 5) as vd
+        ORDER BY `date`;
+    </select>
+
+</mapper>

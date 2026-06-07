@@ -1,0 +1,122 @@
+{
+	"pages": [
+		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": ""
+
+			}
+		},
+		{
+			"path": "pages/ForgetPassword",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/LoginIt",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/EnrolIt",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/DataAnalyse",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/LogoTitle",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/DataPredict",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/DataCheck",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/DataList",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/PersonalCenter",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/Map",
+			"style": {}
+		},
+		{
+			"path": "pages/MapShow",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		}
+	],
+	"tabBar": {
+		"selectedColor": "rgb(86, 119, 34)",
+		"color": "#ccc",
+		"borderStyle": "black",
+		"list": [{
+				"text": "数据分析",
+				"pagePath": "pages/DataAnalyse",
+				"iconPath": "static/dataVisual.png",
+				"selectedIconPath": "static/dataVisual.png"
+			},
+			{
+				"text": "数据预测",
+				"pagePath": "pages/DataPredict",
+				"iconPath": "static/dataPredict.png",
+				"selectedIconPath": "static/dataPredict.png"
+			},
+			{
+				"text": "数据检测",
+				"pagePath": "pages/DataCheck",
+				"iconPath": "static/check.png",
+				"selectedIconPath": "static/check.png"
+			},
+			{
+				"text": "事件列表",
+				"pagePath": "pages/DataList",
+				"iconPath": "static/list.png",
+				"selectedIconPath": "static/list.png"
+			},
+			{
+				"text": "个人中心",
+				"pagePath": "pages/PersonalCenter",
+				"iconPath": "static/login2.png",
+				"selectedIconPath": "static/login2.png"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "智洁环控",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}

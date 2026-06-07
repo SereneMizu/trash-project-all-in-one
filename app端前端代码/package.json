@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@qiun/ucharts": "^2.5.0-20230101",
+    "element-plus": "^2.8.5",
+    "ucharts": "^0.0.0"
+  }
+}

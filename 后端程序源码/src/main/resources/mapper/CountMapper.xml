@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sipc.trash.mapper.CountMapper">
+    <insert id="insertByBinId">
+        INSERT INTO count (residual_waste_count, recyclable_count, food_waste_count, hazardous_waste_count,
+                           bin_id, date, lid_count)
+            VALUE (0, 0, 0, 0, #{binId}, CURRENT_TIME(), 0);
+    </insert>
+
+    <update id="updateLidCount">
+        UPDATE count
+        SET lid_count = lid_count + 1
+        WHERE date = CURRENT_DATE()
+          AND bin_id = #{binId};
+    </update>
+    <update id="updateResidualWasteCount">
+        UPDATE count
+        SET residual_waste_count = residual_waste_count + 1
+        WHERE date = CURRENT_DATE()
+          AND bin_id = #{binId};
+    </update>
+    <update id="updateRecyclableCount">
+        UPDATE count
+        SET recyclable_count = recyclable_count + 1
+        WHERE date = CURRENT_DATE()
+          AND bin_id = #{binId};
+    </update>
+    <update id="updateFoodWasteCount">
+        UPDATE count
+        SET food_waste_count = food_waste_count + 1
+        WHERE date = CURRENT_DATE()
+          AND bin_id = #{binId};
+    </update>
+    <update id="updateHazardousWasteCount">
+        UPDATE count
+        SET hazardous_waste_count = hazardous_waste_count + 1
+        WHERE date = CURRENT_DATE()
+          AND bin_id = #{binId};
+    </update>
+
+    <select id="selectByDateAndId" resultType="com.sipc.trash.pojo.domain.PO.Count">
+        SELECT *
+        FROM count
+        WHERE date = CURRENT_DATE()
+          AND bin_id = #{binId};
+    </select>
+</mapper>

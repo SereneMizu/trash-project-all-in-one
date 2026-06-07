@@ -1,0 +1,22 @@
+server:
+  port: 39381
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: trash
+  datasource:
+    url: jdbc:mysql://192.168.115.170:3306/trash?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: trash
+    password: trash
+  mvc:
+    static-path-pattern: /static/**
+mqtt:
+  url: tcp://116.198.201.236:1883
+  #  url: tcp://127.0.0.1:1883
+  client_id: dgrgdtghtasdasfdshgthggfdh
+
+notification:
+  feishu-bot: true
